@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/homepage','HomeController@index')->name('Home');
-Route::get('/search', 'HomeController@search')->name('Home.search');
+Route::get('/homepage','HomeController@index')->name('home');
+Route::get('/search', 'HomeController@search')->name('home.search');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

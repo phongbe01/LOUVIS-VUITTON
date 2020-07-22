@@ -23,20 +23,47 @@
     <div class="header">
         <nav class="lv-header-tools">
             <ul class="lv-header-tools_services">
-                <li class="lv-header-tools_services-item"><a href="">Ship to: VietNam</a></li>
+                <li class="lv-header-tools_services-item"><a href=""s>Ship to: VietNam</a></li>
                 <li class="lv-header-tools_services-item far fa-question-circle"><a href="">Can we help you?</a></li>
                 <li class="lv-header-tools_services-item fas fa-mobile-alt"><a href="">+08454.Phong</a></li>
             </ul>
-            <ul class="lv-header-tools_tools">
-                <li class="lv-header-tools_tools-item fas fa-map-marked-alt">
-                </li>
-                <li class="lv-header-tools_tools-item far fa-heart"><a href=""></a></li>
-                <li class="lv-header-tools_tools-item far fa-user"><a href=""></a></li>
-                <li class="lv-header-tools_tools-item fas fa-shopping-cart">
-                    <a href="">
-                        <span class="badge badge-light">0</span></a>
-                </li>
-            </ul>
+            <nav class="lv-header-main-nav navbar navbar-expand-lg navbar-light ">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a href="" class="nav-link fas fa-map-marked-alt"></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="" class="nav-link far fa-heart"></a>
+                    </li>
+
+                    @guest
+                        <li class="nav-item active">
+                            <a href="{{route('login')}}" class="nav-link far fa-user"></a>
+                        </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle far fa-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                    <li class="nav-item active ">
+                        <a href="" class="nav-link fas fa-shopping-cart"><span class="badge badge-light">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </nav>
         <div class="lv-header-navigation">
             <div class="lv-logo">
@@ -55,12 +82,12 @@
                     <li class="nav-item active">
                         <a href="" class="nav-link">MAN</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item active ">
                         <a href="" class="nav-link">MAGAZINE</a>
                     </li>
                 </ul>
             </nav>
-            <form action="{{route('Home.search')}}" method="get" class="lv-search-form">
+            <form action="{{route('home.search')}}" method="get" class="lv-search-form">
                 @csrf
                 <div class="lv-search-input">
                     <div class="lv-search-placeholder">
