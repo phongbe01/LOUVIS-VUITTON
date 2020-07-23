@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/homepage','HomeController@index')->name('home');
 Route::get('/search', 'HomeController@search')->name('home.search');
 
+Route::get('login/facebook', 'SocialController@redirectToProvider')->name('login.facebook');
+Route::get('login/facebook/callback', 'SocialController@handleProviderCallback');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

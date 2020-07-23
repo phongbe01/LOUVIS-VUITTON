@@ -29,38 +29,14 @@
             </ul>
             <nav class="lv-header-main-nav navbar navbar-expand-lg navbar-light ">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a href="" class="nav-link fas fa-map-marked-alt"></a>
+                    <li class="nav-item" style="font-size: 1.25em;">
+                        <a href="" class="fas fa-map-marked-alt"></a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="" class="nav-link far fa-heart"></a>
+                    <li class="nav-item" style="font-size: 1.25em;">
+                        <a href="{{route('login.facebook')}}" class=" fab fa-facebook"></a>
                     </li>
-
-                    @guest
-                        <li class="nav-item active">
-                            <a href="{{route('login')}}" class="nav-link far fa-user"></a>
-                        </li>
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle far fa-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
-                    <li class="nav-item active ">
-                        <a href="" class="nav-link fas fa-shopping-cart"><span class="badge badge-light">0</span>
-                        </a>
+                    <li class="nav-item" style="font-size: 1.25em;">
+                        <a href="" class="fab fa-google"></a>
                     </li>
                 </ul>
             </nav>
@@ -96,6 +72,36 @@
                     </div>
                 </div>
             </form>
+            <nav class="lv-header-main-nav navbar navbar-expand-lg navbar-light ">
+                <ul class="navbar-nav mr-auto">
+                    @guest
+                        <li class="nav-item active">
+                            <a href="{{route('login')}}" class="nav-link far fa-user"></a>
+                        </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle far fa-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                    <li class="nav-item active ">
+                        <a href="" class="nav-link fas fa-shopping-cart"><span class="badge badge-light">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
     <div class="container">

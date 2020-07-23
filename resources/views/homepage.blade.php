@@ -1,4 +1,6 @@
 @extends('header')
 @section('content')
-    <h1>this is home page</h1>
+    <div class="container">
+        <h1>this is home page</h1>
+    </div>
 @endsection

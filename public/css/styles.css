@@ -50,7 +50,19 @@ li {
 }
 
 .lv-header-navigation {
-    box-shadow: 0 -1px 0 0 #eae8e4;
+    box-shadow: 0 -1px 0 0 #eae8e4, inset 0 -1px 0 0 #eae8e4;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    height: 4.5rem;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    display: flex;
+    padding-left: 3.125vw;
+    /*margin-right: rem;*/
+    box-sizing: border-box;
+    position: relative;
+
+
 }
 
 @media screen and (min-width: 48rem) {
@@ -62,7 +74,7 @@ li {
         justify-content: flex-start;
         display: flex;
         padding-left: 3.125vw;
-        margin-right: 3rem;
+        /*margin-right: 3rem;*/
     }
 }
 
@@ -92,7 +104,7 @@ li {
     -webkit-box-align: center;
     align-items: center;
     float: right;
-    padding-left: 130px;
+    padding-left: 40px;
     /*background-color: #636b6f;*/
 }
 
@@ -132,4 +144,12 @@ li {
 
 a {
     color: #1b1e21;
+}
+
+.fa-facebook {
+    color: #1d68a7;
+}
+
+.fa-google {
+    color: red;
 }
