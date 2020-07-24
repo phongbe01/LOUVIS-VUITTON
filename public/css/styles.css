@@ -14,12 +14,14 @@
     -webkit-box-align: center;
     align-items: center;
     list-style: none;
+    float: right;
 }
 
 .lv-header-tools_tools {
     -webkit-box-align: center;
     align-items: center;
     list-style: none;
+    justify-content: space-between;
 }
 
 ul {
@@ -55,14 +57,13 @@ li {
     align-items: stretch;
     height: 4.5rem;
     -webkit-box-pack: start;
-    justify-content: flex-start;
+    /*justify-content: flex-start;*/
     display: flex;
     padding-left: 3.125vw;
     /*margin-right: rem;*/
     box-sizing: border-box;
     position: relative;
-
-
+    justify-content: space-between;
 }
 
 @media screen and (min-width: 48rem) {
@@ -88,6 +89,7 @@ li {
 .lv-header-main-nav {
     text-align: center;
     position: center;
+    margin-left: 10px;
 }
 
 .nav-item {
@@ -104,7 +106,7 @@ li {
     -webkit-box-align: center;
     align-items: center;
     float: right;
-    padding-left: 40px;
+    padding-left: 30px;
     /*background-color: #636b6f;*/
 }
 

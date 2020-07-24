@@ -47,7 +47,7 @@
 
                 </div>
             </div>
-            <nav class="lv-header-main-nav navbar navbar-expand-lg navbar-light ">
+            <nav class="lv-header-main-nav navbar navbar-expand-lg navbar-light lv-header-tools_tools ">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a href="" class="nav-link">NEW</a>
@@ -75,12 +75,12 @@
             <nav class="lv-header-main-nav navbar navbar-expand-lg navbar-light ">
                 <ul class="navbar-nav mr-auto">
                     @guest
-                        <li class="nav-item active">
-                            <a href="{{route('login')}}" class="nav-link far fa-user"></a>
+                        <li class="nav-item ">
+                            <a href="{{route('login')}}" class="nav-link far fa-user" style="font-size: 1.25em;"></a>
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle far fa-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" style="font-size: 1.25em;" class="nav-link dropdown-toggle far fa-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  v-pre >
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -97,7 +97,7 @@
                         </li>
                     @endguest
                     <li class="nav-item active ">
-                        <a href="" class="nav-link fas fa-shopping-cart"><span class="badge badge-light">0</span>
+                        <a href="" class="nav-link fas fa-shopping-cart" style="font-size: 1.5em;"><span class="badge badge-light">0</span>
                         </a>
                     </li>
                 </ul>
