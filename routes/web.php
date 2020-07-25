@@ -27,6 +27,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'admin'], 'namespace' => 'Admin'], function (){
    Route::get('/admin/dashboard', 'AdminController@index');
    Route::get('/admin/dashboard/user-table', 'UserTableController@list')->name('user.list');
+   Route::get('/admin/dashboard/user-table/edit/{id}', 'UserTableController@edit')->name('user.edit');
+   Route::delete('/admin/dashboard/user-table/delete/{id}', 'UserTableController@destroy')->name('user.destroy');
 });
 
 

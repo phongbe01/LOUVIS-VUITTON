@@ -20,4 +20,16 @@ class UserTableController extends Controller
         $users = $this->userService->list();
         return view('admin.user-table.list', compact('users'));
     }
+
+    public function edit($id)
+    {
+        $user = $this->userService->getById($id);
+        return view('admin.user-table.edit', compact('user'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $this->userService->delete($request->user_id);
+        return redirect()->route('user.list');
+    }
 }

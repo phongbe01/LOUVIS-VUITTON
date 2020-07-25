@@ -1,7 +1,7 @@
 @extends('admin.index')
 <style>
 
-    button {
+    a {
         margin-right: 1.5em!important;
     }
     .lv-data-table-edit:hover {
@@ -13,7 +13,7 @@
     }
 
     .lv-data-table-icon {
-        margin-block-start: 1.5em;
+        margin-block-start: 0.5em;
     }
 
     .fa-edit {
@@ -25,6 +25,24 @@
     }
 </style>
 @section('content')
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Dashboard</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Tables</li>
+                        <li class="breadcrumb-item active">Users</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
     <div class="">
         <!-- Main content -->
         <section class="content">
@@ -49,22 +67,49 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($users as $key => $user)
+                                    @foreach($users as $user)
                                         <tr>
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>{{$user->roleID}}</td>
+                                            <td>{{$user->role}}</td>
                                             <td>
                                                 <div class="lv-data-table d-flex">
                                                     <span class="fas fa-edit lv-data-table-icon" style=""></span>
-                                                    <button class="btn btn-sm lv-data-table-edit">Edit</button>
-                                                    <form action="" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="_method" value="delete">
-                                                        <span class="fas fa-trash lv-data-table-icon" style=""></span>
-                                                        <button class="btn btn-sm lv-data-table-delete" type="submit">Delete</button>
-                                                    </form>
+                                                    <button class="btn btn-sm lv-data-table-edit"><a href="{{route('user.edit', $user->id)}}">Edit</a></button>
+                                                    <span class="fas fa-trash lv-data-table-icon" style=""></span>
+                                                    <button class="btn btn-sm lv-data-table-delete" type="button" data-toggle="modal" data-target="#deleteUserId" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}">Delete</button>
+                                                    <!-- Delete User Modal -->
+                                                    <div class="modal fade" id="deleteUserId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <form action="{{route('user.destroy', 'user_id')}}" method="post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Notify</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <input type="hidden" name="user_id" id="user_id">
+                                                                        <p id="text-user_name"></p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+{{--                                                    <form action="{{route('user.destroy', $user->id)}}" method="post">--}}
+{{--                                                        @csrf--}}
+{{--                                                        <input type="hidden" name="_method" value="delete">--}}
+{{--                                                        <span class="fas fa-trash lv-data-table-icon" style=""></span>--}}
+{{--                                                        <button class="btn btn-sm lv-data-table-delete" type="submit" data-toggle="modal" data-target="#delateUserId">Delete</button>--}}
+{{--                                                    </form>--}}
                                                 </div>
                                             </td>
                                         </tr>
@@ -86,5 +131,19 @@
         </section>
         <!-- /.content -->
     </div>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script>
+        $('#deleteUserId').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            let user_id = button.data('user_id');
+            let user_name = button.data('user_name');
+            let modal = $(this);
+            modal.find('.modal-title').text('Delete user ');
+            modal.find('.modal-body #user_id').val(user_id);
+            modal.find('.modal-body p').text('Do you want to delete ' + user_name + ' ?');
+        })
+    </script>
 @endsection
+
+
 
