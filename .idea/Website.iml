@@ -118,5 +118,6 @@
     <orderEntry type="library" name="jquery-3.5.1.slim" level="application" />
     <orderEntry type="library" name="popper.js" level="application" />
     <orderEntry type="library" name="542d0c4866" level="application" />
+    <orderEntry type="library" name="ionicons" level="application" />
   </component>
 </module>

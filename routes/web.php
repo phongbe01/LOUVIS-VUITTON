@@ -20,7 +20,13 @@ Route::get('/search', 'HomeController@search')->name('home.search');
 Route::get('login/facebook', 'SocialController@redirectToProvider')->name('login.facebook');
 Route::get('login/facebook/callback', 'SocialController@handleProviderCallback');
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth', 'admin'], 'namespace' => 'Admin'], function (){
+   Route::get('/admin/dashboard', 'AdminController@index');
+   Route::get('/admin/dashboard/user-table', 'UserTableController@list')->name('user.list');
+});
+
+

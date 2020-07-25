@@ -14,7 +14,7 @@ class AddRoleToUser extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //$table->string('role_id');
+            $table->foreign('roleID')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -26,7 +26,7 @@ class AddRoleToUser extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropForeign('roleID');
         });
     }
 }
