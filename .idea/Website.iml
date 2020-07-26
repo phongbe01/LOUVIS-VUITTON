@@ -111,6 +111,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yajra/laravel-datatables-oracle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -119,5 +120,10 @@
     <orderEntry type="library" name="popper.js" level="application" />
     <orderEntry type="library" name="542d0c4866" level="application" />
     <orderEntry type="library" name="ionicons" level="application" />
+    <orderEntry type="library" name="jquery.dataTables" level="application" />
+    <orderEntry type="library" name="dataTables.bootstrap4" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery-validate" level="application" />
+    <orderEntry type="library" name="twitter-bootstrap" level="application" />
   </component>
 </module>

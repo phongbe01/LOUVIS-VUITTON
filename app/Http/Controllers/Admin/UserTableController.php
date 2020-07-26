@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Service\UserService;
+use App\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserTableController extends Controller
 {
@@ -15,9 +17,27 @@ class UserTableController extends Controller
         $this->userService = $userService;
     }
 
-    public function list()
+    public function index(Request $request)
     {
-        $users = $this->userService->list();
+        if ($request->ajax()) {
+            $data = User::all();
+            try {
+                return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($row) {
+
+                        $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="btn btn-sm lv-data-table-edit fas fa-edit">Edit</a>';
+
+                        $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-sm lv-data-table-delete fas fa-delete">Delete</a>';
+
+                        return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            } catch (\Exception $e) {
+                echo $e;
+            }
+        }
         return view('admin.user-table.list', compact('users'));
     }
 
@@ -27,9 +47,16 @@ class UserTableController extends Controller
         return view('admin.user-table.edit', compact('user'));
     }
 
-    public function destroy(Request $request)
+//    public function destroy(Request $request)
+//    {
+//        $this->userService->delete($request->user_id);
+//        return redirect()->route('user.list');
+//    }
+
+    // using ajax
+    public function destroy($id)
     {
-        $this->userService->delete($request->user_id);
-        return redirect()->route('user.list');
+        $this->userService->delete($id);
+        return response()->json(['success'=>'user deleted successfully']);
     }
 }
