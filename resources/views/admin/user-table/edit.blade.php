@@ -14,27 +14,30 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="" maxlength="50" required >
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
+                                   value="" maxlength="50" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-12">
-                            <input id="email" name="email"  placeholder="Enter email" class="form-control" type="email" required>
+                            <input id="email" name="email" placeholder="Enter email" class="form-control" type="email"
+                                   required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group input-password">
                         <label for="password" class="col-sm-2 control-label">Password</label>
                         <div class="col-sm-12">
-                            <input id="password" name="password" placeholder="Enter password" class="form-control" type="password" required>
+                            <input id="password" name="password" placeholder="Enter password" class="form-control"
+                                   type="password" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="role_user" class="col-sm-2 control-label">Role</label>
                         <div class="col-sm-12">
                             <select class="form-control form-control-sm" id="role_user" name="role_user">
-                                <option value="1">Admin</option>
-                                <option value="2">Customer</option>
+                                {{--                                <option value="1">Admin</option>--}}
+                                {{--                                <option value="2">Customer</option>--}}
                             </select>
                         </div>
                     </div>

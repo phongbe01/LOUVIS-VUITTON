@@ -70,66 +70,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {{--                                    @foreach($users as $user)--}}
-                                    {{--                                        <tr>--}}
-                                    {{--                                            <td>{{$user->id}}</td>--}}
-                                    {{--                                            <td>{{$user->name}}</td>--}}
-                                    {{--                                            <td>{{$user->email}}</td>--}}
-                                    {{--                                            <td>{{$user->role}}</td>--}}
-                                    {{--                                            <td>--}}
-                                    {{--                                                <div class="lv-data-table d-flex">--}}
-                                    {{--                                                    <span class="fas fa-edit lv-data-table-icon" style=""></span>--}}
-                                    {{--                                                    <button class="btn btn-sm lv-data-table-edit"><a href="{{route('user.edit', $user->id)}}">Edit</a></button>--}}
-                                    {{--                                                    <span class="fas fa-trash lv-data-table-icon" style=""></span>--}}
-                                    {{--                                                    <button class="btn btn-sm lv-data-table-delete" type="button" data-toggle="modal" data-target="#deleteUserId" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}">Delete</button>--}}
-                                    {{--                                                    <!-- Delete User Modal -->--}}
-                                    {{--                                                    <div class="modal fade" id="deleteUserId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-                                    {{--                                                        <div class="modal-dialog">--}}
-                                    {{--                                                            <form action="{{route('user.destroy', 'user_id')}}" method="post">--}}
-                                    {{--                                                                @csrf--}}
-                                    {{--                                                                @method('DELETE')--}}
-                                    {{--                                                                <div class="modal-content">--}}
-                                    {{--                                                                    <div class="modal-header">--}}
-                                    {{--                                                                        <h5 class="modal-title" id="exampleModalLabel">Notify</h5>--}}
-                                    {{--                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                                    {{--                                                                            <span aria-hidden="true">&times;</span>--}}
-                                    {{--                                                                        </button>--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                    <div class="modal-body">--}}
-                                    {{--                                                                        <input type="hidden" name="user_id" id="user_id">--}}
-                                    {{--                                                                        <p id="text-user_name"></p>--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                    <div class="modal-footer">--}}
-                                    {{--                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                                    {{--                                                                        <button type="submit" class="btn btn-danger" id="btn-delete">Delete</button>--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                </div>--}}
-                                    {{--                                                            </form>--}}
-                                    {{--                                                            <form action="" id="form-delete">--}}
-                                    {{--                                                                <div class="modal-content">--}}
-                                    {{--                                                                    <div class="modal-header">--}}
-                                    {{--                                                                        <h5 class="modal-title" id="exampleModalLabel">Notify</h5>--}}
-                                    {{--                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                                    {{--                                                                            <span aria-hidden="true">&times;</span>--}}
-                                    {{--                                                                        </button>--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                    <div class="modal-body">--}}
-                                    {{--                                                                        <input type="hidden" name="user_id" id="user_id">--}}
-                                    {{--                                                                        <p id="text-user_name"></p>--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                    <div class="modal-footer">--}}
-                                    {{--                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                                    {{--                                                                        <button type="submit" class="btn btn-danger" id="btn-delete">Delete</button>--}}
-                                    {{--                                                                    </div>--}}
-                                    {{--                                                                </div>--}}
-                                    {{--                                                            </form>--}}
-                                    {{--                                                        </div>--}}
-
-                                    {{--                                                    </div>--}}
-                                    {{--                                                </div>--}}
-                                    {{--                                            </td>--}}
-                                    {{--                                        </tr>--}}
-                                    {{--                                    @endforeach--}}
                                     </tbody>
                                     <tfoot>
                                     </tfoot>
@@ -151,6 +91,7 @@
     <!--  Edit Modal -->
     @include('admin.user-table.edit')
     <!-- End Edit Modal -->
+
     <script>
         $(function () {
             $.ajaxSetup({
@@ -172,6 +113,7 @@
                 ]
             });
 
+            //create
             $('#createNewProduct').click(function () {
                 $('#saveBtn').val("create-user");
                 $('#userForm').trigger("reset");
@@ -185,17 +127,24 @@
             $('.card').on('click', '.lv-data-table-edit', function () {
                 var user_id = $(this).data('id');
                 $.get("{{ route('users.index') }}" + '/' + user_id + '/edit', function (data) {
+                    var user = data.user;
+                    var roles = data.roles;
                     $('#modelHeading').html("Edit User");
                     $('#saveBtn').val("edit-user");
                     $('#ajaxModel').modal('show');
-                    $('#user_id').val(data.id);
-                    $('#name').val(data.name);
-                    $('#email').val(data.email);
-                    $('#password').hide();
-                    $('#role_user').val(data.roleID);
+                    $('#user_id').val(user.id);
+                    $('#name').val(user.name);
+                    $('#email').val(user.email);
+                    $('.input-password').hide();
+                    $("#role_user").empty();
+                    $.each(roles, function () {
+                        $("#role_user").append('<option value="' + this.id + '">' + this.name + '</option>');
+                    })
+                    $('#role_user').val(user.roleID);
                 })
             });
 
+            //edit
             $('#saveBtn').click(function (e) {
                 e.preventDefault();
                 $(this).html('Sending..');
@@ -228,10 +177,8 @@
             });
 
             $('.card').on('click', '.lv-data-table-delete', function () {
-
                 var user_id = $(this).data("id");
                 confirm("Are You sure want to delete !");
-
                 $.ajax({
                     type: "DELETE",
                     url: "{{ route('users.store') }}" + '/' + user_id,
@@ -243,7 +190,6 @@
                     }
                 });
             });
-
         });
     </script>
 @endsection

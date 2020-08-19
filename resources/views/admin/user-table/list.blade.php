@@ -67,66 +67,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-{{--                                    @foreach($users as $user)--}}
-{{--                                        <tr>--}}
-{{--                                            <td>{{$user->id}}</td>--}}
-{{--                                            <td>{{$user->name}}</td>--}}
-{{--                                            <td>{{$user->email}}</td>--}}
-{{--                                            <td>{{$user->role}}</td>--}}
-{{--                                            <td>--}}
-{{--                                                <div class="lv-data-table d-flex">--}}
-{{--                                                    <span class="fas fa-edit lv-data-table-icon" style=""></span>--}}
-{{--                                                    <button class="btn btn-sm lv-data-table-edit"><a href="{{route('user.edit', $user->id)}}">Edit</a></button>--}}
-{{--                                                    <span class="fas fa-trash lv-data-table-icon" style=""></span>--}}
-{{--                                                    <button class="btn btn-sm lv-data-table-delete" type="button" data-toggle="modal" data-target="#deleteUserId" data-user_id="{{$user->id}}" data-user_name="{{$user->name}}">Delete</button>--}}
-{{--                                                    <!-- Delete User Modal -->--}}
-{{--                                                    <div class="modal fade" id="deleteUserId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-{{--                                                        <div class="modal-dialog">--}}
-{{--                                                            <form action="{{route('user.destroy', 'user_id')}}" method="post">--}}
-{{--                                                                @csrf--}}
-{{--                                                                @method('DELETE')--}}
-{{--                                                                <div class="modal-content">--}}
-{{--                                                                    <div class="modal-header">--}}
-{{--                                                                        <h5 class="modal-title" id="exampleModalLabel">Notify</h5>--}}
-{{--                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                            <span aria-hidden="true">&times;</span>--}}
-{{--                                                                        </button>--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="modal-body">--}}
-{{--                                                                        <input type="hidden" name="user_id" id="user_id">--}}
-{{--                                                                        <p id="text-user_name"></p>--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="modal-footer">--}}
-{{--                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-{{--                                                                        <button type="submit" class="btn btn-danger" id="btn-delete">Delete</button>--}}
-{{--                                                                    </div>--}}
-{{--                                                                </div>--}}
-{{--                                                            </form>--}}
-{{--                                                            <form action="" id="form-delete">--}}
-{{--                                                                <div class="modal-content">--}}
-{{--                                                                    <div class="modal-header">--}}
-{{--                                                                        <h5 class="modal-title" id="exampleModalLabel">Notify</h5>--}}
-{{--                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                                                            <span aria-hidden="true">&times;</span>--}}
-{{--                                                                        </button>--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="modal-body">--}}
-{{--                                                                        <input type="hidden" name="user_id" id="user_id">--}}
-{{--                                                                        <p id="text-user_name"></p>--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="modal-footer">--}}
-{{--                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-{{--                                                                        <button type="submit" class="btn btn-danger" id="btn-delete">Delete</button>--}}
-{{--                                                                    </div>--}}
-{{--                                                                </div>--}}
-{{--                                                            </form>--}}
-{{--                                                        </div>--}}
-
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </td>--}}
-{{--                                        </tr>--}}
-{{--                                    @endforeach--}}
                                     </tbody>
                                     <tfoot>
                                     </tfoot>

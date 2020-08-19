@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Role;
 use App\Service\UserService;
 use App\User;
 use Illuminate\Http\Request;
@@ -108,7 +109,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->userService->getById($id);
-        return response()->json($user);
+        $roles = Role::all();
+        return response()->json(['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -121,7 +123,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $this->userService->update($request);
-        return response()->json(['success' => 'User saved successfully.']);
+        return response()->json(['success' => 'User saved successfully 1.']);
     }
 
     /**

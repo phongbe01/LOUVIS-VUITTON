@@ -45,6 +45,7 @@ class SocialController extends Controller
             'email' => $facebookUser->email,
             'provider_id' => $facebookUser->id,
             'provider' => $facebookUser->id,
+            'roleID' => 2,
         ]);
     }
 

@@ -257,7 +257,7 @@
                                 <a href="{{route('users.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>User Tables</p>
-                                </a>
+                                </a>w
                             </li>
                             <li class="nav-item">
                                 <a href="pages/tables/data.html" class="nav-link">

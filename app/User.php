@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use Notifiable;
+
     protected $guarded = [];
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'roleID', 'id',
+        'name', 'email', 'roleID', 'id', 'password',
     ];
 
     /**
