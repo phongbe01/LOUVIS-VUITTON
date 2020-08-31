@@ -37,7 +37,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Tables</li>
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Roles</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -52,20 +52,18 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header d-flex">
-                                <h3 class="card-title">User Table</h3>
+                                <h3 class="card-title">Roles Table</h3>
                             </div>
-                            <a class="btn btn-success " href="javascript:void(0)" id="createNewUser"> Create New
-                                User</a>
+                            <a class="btn btn-success " href="javascript:void(0)" id="createNewRole"> Create New
+                                Role</a>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="user_table"
+                                <table id="role_table"
                                        class="table table-bordered table-striped table-hover table-bordered data-table">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -89,7 +87,7 @@
     </div>
 
     <!--  Edit Modal -->
-    @include('admin.user-table.edit')
+    @include('admin.role-table.edit')
     <!-- End Edit Modal -->
 
     <script>
@@ -103,48 +101,33 @@
             let table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: "{{ route('roles.index') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'id'},
                     {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'roleID', name: 'roleID'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });
 
             //create
-            $('#createNewUser').click(function () {
-                $.get("{{route('users.create')}}", function (data) {
-                    var roles = data.roles;
-                    $('#saveBtn').val("create-user");
-                    $('#userForm').trigger("reset");
-                    $('#modelHeading').html("Create New User");
+            $('#createNewRole').click(function () {
+                $.get("{{route('roles.create')}}", function () {
+                    $('#saveBtn').val("create-role");
+                    $('#roleForm').trigger("reset");
+                    $('#modelHeading').html("Create New role");
                     $('#ajaxModel').modal('show');
-                    $('#password').show();
-                    $.each(roles, function () {
-                        $("#role_user").append('<option value="' + this.id + '">' + this.name + '</option>');
-                    })
                 })
             });
 
             $('.card').on('click', '.lv-data-table-edit', function () {
-                var user_id = $(this).data('id');
-                $.get("{{ route('users.index') }}" + '/' + user_id + '/edit', function (data) {
-                    var user = data.user;
-                    var roles = data.roles;
-                    $('#modelHeading').html("Edit User");
-                    $('#saveBtn').val("edit-user");
+                var role_id = $(this).data('id');
+                $.get("{{ route('roles.index') }}" + '/' + role_id + '/edit', function (data) {
+                    var role = data.role;
+                    $('#modelHeading').html("Edit Role");
+                    $('#saveBtn').val("edit-role");
                     $('#ajaxModel').modal('show');
-                    $('#user_id').val(user.id);
-                    $('#name').val(user.name);
-                    $('#email').val(user.email);
-                    $('.input-password').hide();
-                    $("#role_user").empty();
-                    $.each(roles, function () {
-                        $("#role_user").append('<option value="' + this.id + '">' + this.name + '</option>');
-                    })
-                    $('#role_user').val(user.roleID);
+                    $('#role_id').val(role.id);
+                    $('#name').val(role.name);
                 })
             });
 
@@ -153,13 +136,13 @@
                 e.preventDefault();
                 $(this).html('Sending..');
                 $.ajax({
-                    data: $('#userForm').serialize(),
-                    url: "{{ route('users.index') }}",
+                    data: $('#roleForm').serialize(),
+                    url: "{{ route('roles.index') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function (data) {
                         if ($.isEmptyObject(data.error)) {
-                            $('#userForm').trigger("reset");
+                            $('#roleForm').trigger("reset");
                             $('#ajaxModel').modal('hide');
                             $('.print-error-msg').hide();
                             table.draw();
@@ -181,11 +164,12 @@
             });
 
             $('.card').on('click', '.lv-data-table-delete', function () {
-                var user_id = $(this).data("id");
+                var role_id = $(this).data("id");
                 confirm("Are You sure want to delete !");
                 $.ajax({
                     type: "DELETE",
-                    url: "{{ route('users.store') }}" + '/' + user_id,
+                    url: "{{ route('roles.index') }}" + '/' + role_id + '/',
+                    data: role_id,
                     success: function (data) {
                         table.draw();
                     },

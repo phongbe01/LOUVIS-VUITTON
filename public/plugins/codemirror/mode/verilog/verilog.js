@@ -278,7 +278,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
     return re;
   }
 
-  // Interface
+  // Interfaces
   return {
 
     // Regex to force current line to reindent

@@ -63,7 +63,7 @@
                     </li>
                 </ul>
             </nav>
-            <form action="{{route('home.search')}}" method="get" class="lv-search-form">
+            <form action="" method="get" class="lv-search-form">
                 @csrf
                 <div class="lv-search-input">
                     <div class="lv-search-placeholder">

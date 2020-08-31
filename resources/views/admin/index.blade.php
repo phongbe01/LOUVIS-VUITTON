@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>AdminLTE 3 | Dashboard</title>
     @include('admin.style')
     @include('admin.js')
@@ -50,7 +50,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="{{asset('dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <img src="{{asset('dist/img/user1-128x128.jpg')}}" alt="User Avatar"
+                                 class="img-size-50 mr-3 img-circle">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
@@ -66,7 +67,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="{{asset('dist/img/user8-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="{{asset('dist/img/user8-128x128.jpg')}}" alt="User Avatar"
+                                 class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     John Pierce
@@ -82,7 +84,8 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="{{asset('dist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="{{asset('dist/img/user3-128x128.jpg')}}" alt="User Avatar"
+                                 class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Nora Silvester
@@ -143,7 +146,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="" class="brand-link">
-            <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
+                 class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">Admin</span>
         </a>
 
@@ -162,7 +166,8 @@
             <!-- SidebarSearch Form -->
             <div class="form-inline">
                 <div class="input-group" data-widget="sidebar-search">
-                    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                           aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-sidebar">
                             <i class="fas fa-search fa-fw"></i>
@@ -173,7 +178,8 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item menu-open">
@@ -254,15 +260,15 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('users.index')}}" class="nav-link">
+                                <a href="{{route('users.index')}}" class="nav-link" id="user-table">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>User Tables</p>
-                                </a>w
+                                    <p>User Table</p>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/tables/data.html" class="nav-link">
+                                <a href="{{route('roles.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>DataTables</p>
+                                    <p>Role Table</p>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -563,8 +569,8 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
-        @yield('content')
-        <!-- /.content -->
+    @yield('content')
+    <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
@@ -585,4 +591,15 @@
 
 </body>
 
+<script type="text/javascript">
+    $('#user-table').click(function (e) {
+        $.ajax({
+            type: "GET",
+            url: "",
+            success: function () {
+                window.location.href= "{{route('users.index')}}";
+            }
+        });
+    });
+</script>
 </html>

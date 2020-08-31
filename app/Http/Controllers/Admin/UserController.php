@@ -54,11 +54,12 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return response()->json(['roles' => $roles]);
     }
 
     /**
@@ -84,7 +85,7 @@ class UserController extends Controller
                 return response()->json(['success' => 'Update user.']);
             } else {
                 $this->userService->create($request);
-                return response()->json(['success' => 'Create new user.']);
+                return response()->json(['success' => 'Create new user.', ]);
             }
         }
     }

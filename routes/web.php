@@ -13,20 +13,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/','HomeController@index')->name('home');
 Route::get('/homepage','HomeController@index')->name('home');
-Route::get('/search', 'HomeController@search')->name('home.search');
 
 Route::get('login/facebook', 'SocialController@redirectToProvider')->name('login.facebook');
 Route::get('login/facebook/callback', 'SocialController@handleProviderCallback');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(['middleware' => ['auth', 'admin'], 'namespace' => 'Admin', 'prefix' => '/admin/dashboard'], function (){
    Route::get('', 'AdminController@index');
    Route::resource('/users', 'UserController');
+   Route::resource('/roles', 'RoleController');
+
 });
 
 

@@ -36,8 +36,6 @@
                         <label for="role_user" class="col-sm-2 control-label">Role</label>
                         <div class="col-sm-12">
                             <select class="form-control form-control-sm" id="role_user" name="role_user">
-                                {{--                                <option value="1">Admin</option>--}}
-                                {{--                                <option value="2">Customer</option>--}}
                             </select>
                         </div>
                     </div>
